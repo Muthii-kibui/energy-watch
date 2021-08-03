@@ -1,12 +1,22 @@
 import React from "react";
-import "./App.css";
-import Constants from "./constants";
+import { Route, RouteComponentProps, Switch } from "react-router-dom";
+import routes from "./configs/routes";
+import "./App.less";
 
 function App() {
   return (
-    <div className="App">
-      <Constants />
-    </div>
+    <Switch>
+      {routes.map((route, index) => {
+        return (
+          <Route
+            key={index}
+            path={route.path}
+            exact={route.exact}
+            render={(props: RouteComponentProps<any>) => <route.component />}
+          />
+        );
+      })}
+    </Switch>
   );
 }
 
